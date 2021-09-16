@@ -26,9 +26,9 @@
     </div>
   </div>
 
-  <div *ngIf="email.invalid && email.touched" class="alert">
-    Name is required.
-  </div>
+  <span *ngIf="email.invalid && email.touched" class="alert">
+    Email is invalid.
+  </span>
  
 
   <div class="form-group">

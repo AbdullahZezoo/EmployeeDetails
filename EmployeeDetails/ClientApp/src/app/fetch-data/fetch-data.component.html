@@ -6,10 +6,6 @@
   <a [routerLink]="['/add-employee']" class="btn btn-primary float-right mb-3">New Employee</a>
 </p>
 
-<div [formGroup]="searchGroup">
-  <input type="text" formControlName="data" class="" />
-  <input type="submit" (click)="search()" value="search" class="btn btn-sm btn-danger"/>
-</div>
 
 <table class="table table-sm table-hover" *ngIf="(employees$ | async)?.length>0" id="sheet">
   <thead>
