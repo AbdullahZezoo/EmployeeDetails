@@ -1,0 +1,38 @@
+<h1>{{actionType}} Employee</h1>
+
+<form [formGroup]="employeeForm" (ngSubmit)="save()">
+  <div class="form-group row">
+    <label class=" control-label col-md-12">Name</label>
+    <div class="col-md-12">
+      <input class="form-control" type="text" formControlName="name">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="control-label col-md-12" for="photo">Mobile</label>
+    <div class="col-md-12">
+      <input type="number" class="form-control" formControlName="mobile" />
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class=" control-label col-md-12">Email</label>
+    <div class="col-md-12">
+      <input class="form-control" type="email" formControlName="email" required/>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class=" control-label col-md-12">Salary</label>
+    <div class="col-md-12">
+      <input class="form-control" type="number" formControlName="salary" />
+    </div>
+  </div>
+
+  <div *ngIf="email.invalid && email.touched" class="alert">
+    Name is required.
+  </div>
+ 
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-success float-right">Save</button>
+    <button class="btn btn-secondary float-left" (click)="cancel()">Cancel</button>
+  </div>
+</form>

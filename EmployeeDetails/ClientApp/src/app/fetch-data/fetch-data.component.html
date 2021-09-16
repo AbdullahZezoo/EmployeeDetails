@@ -1,0 +1,42 @@
+<h1>Employees</h1>
+
+<p *ngIf="!(employees$ | async)"><em>Loading...</em></p>
+
+<p>
+  <a [routerLink]="['/add-employee']" class="btn btn-primary float-right mb-3">New Employee</a>
+</p>
+
+<div [formGroup]="searchGroup">
+  <input type="text" formControlName="data" class="" />
+  <input type="submit" (click)="search()" value="search" class="btn btn-sm btn-danger"/>
+</div>
+
+<table class="table table-sm table-hover" *ngIf="(employees$ | async)?.length>0" id="sheet">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Mobile</th>
+      <th>Email</th>
+      <th>Salary</th>
+      <th>Tax</th>
+      <th>Net Salary</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let e of all; let x of (employeeTaxs$ | async)">
+      <td>{{ e.id }}</td>
+      <td>{{ e.name }}</td>
+      <td>{{ e.mobile }}</td>
+      <td>{{ e.email }}</td>
+      <td>{{ e.salary }}</td>
+      <td>{{ (e.emp | async).tax }}</td>
+      <td>{{ (e.emp | async).netSalary }}</td>
+      <td><a [routerLink]="['/edit-employee',e.id]" class="btn btn-primary btn-sm">Edit</a> | 
+      <a (click)="delete(e.id, x.id)" class="btn btn-danger btn-sm">Delete</a> |
+      <a [routerLink]="['/view-employee', e.id, x.id]" class="btn btn-primary btn-sm">View</a> </td>
+
+    </tr>
+  </tbody>
+</table>
